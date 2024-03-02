@@ -1,0 +1,11 @@
+[workspace]
+members = ["config_example", "config_example_macros"]
+resolver = "2"
+
+[workspace.package]
+version = "0.1.0"
+edition = "2021"
+authors = ["Vitalii Lukyanov <tukanoid@outlook.com>"]
+license = "MIT"
+repository = "https://github.com/tukanoidd/config_example"
+homepage = "https://github.com/tukanoidd/config_example"

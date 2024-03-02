@@ -1,0 +1,19 @@
+[package]
+name = "config_example_macros"
+version.workspace = true
+authors.workspace = true
+edition.workspace = true
+license.workspace = true
+repository.workspace = true
+homepage.workspace = true
+
+[lib]
+proc-macro = true
+
+[dependencies]
+darling = { version = "0.20.8", features = ["diagnostics"] }
+proc-macro-crate = "3.1.0"
+proc-macro-error = "1.0.4"
+proc-macro2 = { version = "1.0.78", features = ["nightly"] }
+quote = "1.0.35"
+syn = "2.0.52"

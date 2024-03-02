@@ -1,0 +1,18 @@
+[package]
+name = "config_example"
+version.workspace = true
+authors.workspace = true
+edition.workspace = true
+license.workspace = true
+repository.workspace = true
+homepage.workspace = true
+
+[features]
+default = ["toml", "yaml"]
+toml = []
+yaml = []
+
+[dependencies]
+derive_more = "0.99.17"
+macros = { path = "../config_example_macros", package = "config_example_macros" }
+num = "0.4.1"
