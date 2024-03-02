@@ -1,13 +1,11 @@
 pub mod formatter;
 pub mod types;
 
-use macros::node;
-
 use crate::{comment, empty, float, integer, util::DocStr};
 
 use self::types::{
     comment::CommentNode,
-    number::{IntoFloatNode, IntoIntegerNode},
+    number::{IntoFloatType, IntoIntegerType},
     NodeType,
 };
 
@@ -30,12 +28,12 @@ impl Node {
         Self::new(comment!(comment))
     }
 
-    pub fn integer(int: impl IntoIntegerNode) -> Self {
-        Self::new(integer!(int))
+    pub fn integer(name: impl Into<String>, int: impl IntoIntegerType) -> Self {
+        Self::new(integer!(name, int))
     }
 
-    pub fn float(float: impl IntoFloatNode) -> Self {
-        Self::new(float!(float))
+    pub fn float(name: impl Into<String>, float: impl IntoFloatType) -> Self {
+        Self::new(float!(name, float))
     }
 
     pub fn empty() -> Self {
@@ -66,15 +64,4 @@ impl Node {
 pub struct Comments {
     top: Option<CommentNode>,
     right: Option<CommentNode>,
-}
-
-fn test() {
-    let node = node!(
-        integer!(2),
-        tabs = 2,
-        comments = {
-            top: "hallo",
-            right: ["hallo", "bye"]
-        }
-    );
 }

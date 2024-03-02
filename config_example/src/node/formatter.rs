@@ -1,6 +1,9 @@
 use crate::{docstr_empty, util::DocStr};
 
-use super::{types::number::NumberNode, CommentNode, Comments, Node, NodeType};
+use super::{
+    types::number::{NumberNode, NumberType},
+    CommentNode, Comments, Node, NodeType,
+};
 
 #[cfg(feature = "toml")]
 pub mod toml;
@@ -43,10 +46,13 @@ pub trait NodeFormatter {
         docstr_empty!(amount)
     }
 
-    fn format_number(number: NumberNode) -> DocStr {
-        DocStr::line(match number {
-            NumberNode::Integer(int) => int.to_string(),
-            NumberNode::Float(float) => float.to_string(),
-        })
+    fn format_number(NumberNode { name, ty }: NumberNode) -> DocStr {
+        DocStr::line(format!(
+            "{name}: {}",
+            match ty {
+                NumberType::Integer(int) => int.to_string(),
+                NumberType::Float(float) => float.to_string(),
+            }
+        ))
     }
 }
