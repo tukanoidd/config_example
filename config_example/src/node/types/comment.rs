@@ -17,6 +17,6 @@ macro_rules! comment {
         $crate::node::types::comment::CommentNode::new($line)
     };
     ($($line:expr),+) => {
-        $crate::node::types::comment::CommentNode($crate::docstr_multi!([$($line),+]))
+        $crate::node::types::comment::CommentNode($crate::docstr_multi!(vec![$($line),+]))
     };
 }

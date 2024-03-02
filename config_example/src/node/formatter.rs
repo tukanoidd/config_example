@@ -1,9 +1,6 @@
-use crate::{docstr_empty, util::DocStr};
+use crate::{docstr, docstr_empty, util::DocStr};
 
-use super::{
-    types::number::{NumberNode, NumberType},
-    CommentNode, Comments, Node, NodeType,
-};
+use super::{types::number::NumberNode, CommentNode, Comments, Node, NodeType};
 
 #[cfg(feature = "toml")]
 pub mod toml;
@@ -11,6 +8,8 @@ pub mod toml;
 pub mod yaml;
 
 pub trait NodeFormatter {
+    const NAMED_NODE_SEPARATOR: &'static str;
+
     fn format_node(
         Node {
             tabs,
@@ -46,13 +45,10 @@ pub trait NodeFormatter {
         docstr_empty!(amount)
     }
 
-    fn format_number(NumberNode { name, ty }: NumberNode) -> DocStr {
-        DocStr::line(format!(
-            "{name}: {}",
-            match ty {
-                NumberType::Integer(int) => int.to_string(),
-                NumberType::Float(float) => float.to_string(),
-            }
-        ))
+    fn format_number(NumberNode { ty, name }: NumberNode) -> DocStr {
+        docstr!(match name {
+            Some(name) => format!("{name}{}{ty}", Self::NAMED_NODE_SEPARATOR),
+            None => ty.to_string(),
+        })
     }
 }

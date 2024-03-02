@@ -28,12 +28,12 @@ impl Node {
         Self::new(comment!(comment))
     }
 
-    pub fn integer(name: impl Into<String>, int: impl IntoIntegerType) -> Self {
-        Self::new(integer!(name, int))
+    pub fn integer(int: impl IntoIntegerType) -> Self {
+        Self::new(integer!(int))
     }
 
-    pub fn float(name: impl Into<String>, float: impl IntoFloatType) -> Self {
-        Self::new(float!(name, float))
+    pub fn float(float: impl IntoFloatType) -> Self {
+        Self::new(float!(float))
     }
 
     pub fn empty() -> Self {

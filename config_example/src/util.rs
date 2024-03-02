@@ -46,7 +46,7 @@ impl DocStr {
         let maybe_lines = line.lines().collect::<Vec<_>>();
 
         match maybe_lines.len() {
-            1 => Self::line(line),
+            1 => Self::Line(line),
             _ => Self::multiline(maybe_lines),
         }
     }
