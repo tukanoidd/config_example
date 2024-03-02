@@ -83,7 +83,7 @@ mod test {
         let generated_yaml_str = Generator::generate::<YamlFormatter, TestSchema>().join("\n");
 
         println!("Generated TOML example:\n{generated_toml_str}");
-        println!("");
+        println!();
         println!("Generated YAML example:\n{generated_yaml_str}");
     }
 }
